@@ -238,9 +238,9 @@ int main(int argc, char* argv[])
 
       for (auto key2 : *treeList) {
         auto treeName = ((TObjString*)key2)->GetString().Data();
-	if (debugOutput) {
-	  printf("    Processing tree %s\n", treeName);
-	}
+        if (debugOutput) {
+          printf("    Processing tree %s\n", treeName);
+        }
         bool found = (std::find(foundTrees.begin(), foundTrees.end(), treeName) != foundTrees.end());
         if (found == true) {
           printf("    ***WARNING*** Tree %s was already merged (even if we purged duplicated trees before, so this should not happen), skipping\n", treeName);
@@ -249,9 +249,9 @@ int main(int argc, char* argv[])
         foundTrees.push_back(treeName);
 
         auto inputTree = (TTree*)inputFile->Get(Form("%s/%s", dfName, treeName));
-	if (debugOutput) {
-	  printf("    Tree %s has %lld entries\n", treeName, inputTree->GetEntries());
-	}
+        if (debugOutput) {
+          printf("    Tree %s has %lld entries\n", treeName, inputTree->GetEntries());
+        }
         if (trees.count(treeName) == 0) {
           if (mergedDFs > 1) {
             printf("    *** FATAL ***: The tree %s was not in the previous dataframe(s)\n", treeName);
@@ -297,9 +297,9 @@ int main(int argc, char* argv[])
             char* buffer = new char[maximum * typeSize];
             memset(buffer, 0, maximum * typeSize);
             vlaPointers.push_back(buffer);
-	    if (debugOutput) {
-	      printf("      Allocated VLA buffer of length %d with %d bytes each for branch name %s\n", maximum, typeSize, br->GetName());
-	    }
+            if (debugOutput) {
+              printf("      Allocated VLA buffer of length %d with %d bytes each for branch name %s\n", maximum, typeSize, br->GetName());
+            }
             inputTree->SetBranchAddress(br->GetName(), buffer);
             outputTree->SetBranchAddress(br->GetName(), buffer);
 
